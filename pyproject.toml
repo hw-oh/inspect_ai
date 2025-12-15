@@ -6,6 +6,7 @@ build-backend = "setuptools.build_meta"
 dependencies = { file = ["requirements.txt"] }
 
 [tool.setuptools_scm]
+fallback_version = "0.3.153"
 git_describe_command = [
   'git',
   'describe',
