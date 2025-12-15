@@ -266,6 +266,11 @@ class OpenAIAPI(ModelAPI):
         )
 
     def is_o_series(self) -> bool:
+        # Skip o-series detection for non-OpenAI endpoints
+        # This prevents false positives like "solar-pro2" matching "o2"
+        actual_base_url = model_base_url(self.base_url, "OPENAI_BASE_URL") or ""
+        if actual_base_url and "openai.com" not in actual_base_url:
+            return False
         name = self.service_model_name()
         if bool(re.match(r"^o\d+", name)):
             return True
