@@ -125,8 +125,8 @@ class GenerateConfigArgs(TypedDict, total=False):
     effort: Literal["low", "medium", "high"] | None
     """Control how many tokens are used for a response, trading off between response thoroughness and token efficiency. Anthropic Claude 4.5 Opus only."""
 
-    reasoning_effort: Literal["none", "minimal", "low", "medium", "high"] | None
-    """Constrains effort on reasoning. Defaults vary by provider and model and not all models support all values (please consult provider documentation for details)."""
+    reasoning_effort: Literal["none", "minimal", "low", "medium", "high", "xhigh"] | None
+    """Constrains effort on reasoning. Defaults vary by provider and model and not all models support all values (please consult provider documentation for details). 'xhigh' is supported by OpenAI GPT-5.2+."""
 
     reasoning_tokens: int | None
     """Maximum number of tokens to use for reasoning. Anthropic Claude models only."""
@@ -222,10 +222,10 @@ class GenerateConfig(BaseModel):
     effort: Literal["low", "medium", "high"] | None = Field(default=None)
     """Control how many tokens are used for a response, trading off between response thoroughness and token efficiency. Anthropic Claude 4.5 Opus only."""
 
-    reasoning_effort: Literal["none", "minimal", "low", "medium", "high"] | None = (
+    reasoning_effort: Literal["none", "minimal", "low", "medium", "high", "xhigh"] | None = (
         Field(default=None)
     )
-    """Constrains effort on reasoning. Defaults vary by provider and model and not all models support all values (please consult provider documentation for details)."""
+    """Constrains effort on reasoning. Defaults vary by provider and model and not all models support all values (please consult provider documentation for details). 'xhigh' is supported by OpenAI GPT-5.2+."""
 
     reasoning_tokens: int | None = Field(default=None)
     """Maximum number of tokens to use for reasoning. Anthropic Claude models only."""
